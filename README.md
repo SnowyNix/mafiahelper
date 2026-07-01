@@ -1,0 +1,1 @@
+I am not a programmer. This is a vibecoded piece of shit and i also refuse to spend any money on it so it will probably be pretty slow going. Feature by feature, i hope to get it working properly at some point.
