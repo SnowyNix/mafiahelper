@@ -91,8 +91,10 @@ function buildRoleControl(role) {
     
     if (isMultiCap) {
         // Spinner
-        const label = document.createElement("label"); 
+        const label = document.createElement("label");
         const max = role.cap === Infinity ? 99 : role.cap;
+        label.textContent = getSpinnerLabel(role) + ": ";
+        
         const input = document.createElement("input");
         input.type = "number";
         input.min = "0";
@@ -103,7 +105,6 @@ function buildRoleControl(role) {
         input.addEventListener("input", updateCitizenCount);
         
         label.appendChild(input);
-        label.textContent = getSpinnerLabel(role);
         container.appendChild(label);
     } else {
         // Checkbox
