@@ -20,24 +20,18 @@
         </p>
         <p>
             Number of Citizens: <strong id="citizenCount">0</strong>
-            <span id="citizenCountWarning" style="color:red; display:none;"> (too many roles assigned!)</span>
+            <span id="citizenCountWarning"></span>
         </p>
 
         <h3>Role Select</h3>
         <div id="roleColumns">
             <div id="townRolesColumn"></div>
-            <div>
-                <div id="mafiaRolesColumn"></div>
-                <br>
-                <div id="indepRolesColumn"></div>
-            </div>
+            <div id="mafiaIndepColumn"></div>
         </div>
 
         <h3>Additional Settings</h3>
         <div id="additionalSettings">
-            <label><input type="checkbox" id="settingRequireMafia" checked> Require at least 1 Mafia Member</label>
             <label><input type="checkbox" id="settingRandomAssign"> Randomize assignments on next screen</label>
-            <label><input type="checkbox" id="settingRevealOnDeath"> Reveal roles when players die</label>
             <label><input type="checkbox" id="settingMafiaGroupWake"> Mafia wakes together as group</label>
             <label>Serial Killer every <input type="number" id="settingSkFrequency" min="1" max="5" value="2" style="width:40px;"> nights</label>
         </div>
@@ -58,102 +52,6 @@
         <button type="button" onclick="confirmRoleAssignments()">Continue</button>
     </div>
 
-    <!-- SCREEN: FIRST NIGHT -->
-    <div id="screenFirstNight" style="display:none;">
-        <h2>First Night</h2>
-        <p>The game master calls out the following groups to wake and meet each other:</p>
-        <div id="firstNightContent"></div>
-        <p id="firstNightSummary"></p>
-        <br>
-        <button type="button" onclick="confirmFirstNight()">Continue to Day 1</button>
-    </div>
-
-    <!-- SCREEN: DAY -->
-    <div id="screenDay" style="display:none;">
-        <h2>Day <span id="dayNumber">0</span></h2>
-
-        <!-- Player status bar -->
-        <p><strong id="livingCount">0</strong> players alive &middot; Threshold: <strong id="thresholdDisplay">0</strong></p>
-
-        <!-- LYNCH SECTION -->
-        <div id="lynchSection">
-            <h3>Lynching</h3>
-            <div id="noLynchDay" style="display:none;">
-                <p><em>No lynch today &mdash; first day tradition.</em></p>
-                <p>Hold a Mayor election below.</p>
-            </div>
-
-            <div id="lynchActive">
-                <div id="accusationRows"></div>
-                <br>
-                <button type="button" id="startVoteBtn" onclick="startLynchVote()">Start Vote</button>
-            </div>
-
-            <div id="voteSection" style="display:none;">
-                <div id="voteRows"></div>
-                <p>Threshold: <strong id="lynchThreshold">0</strong> votes needed (50% of living)</p>
-                <br>
-                <button type="button" onclick="resolveLynch()">Confirm Lynch</button>
-            </div>
-
-            <div id="lynchResult" style="display:none;">
-                <p id="lynchResultMessage"></p>
-                <button type="button" id="nextLynchBtn" onclick="resetLynchCycle()" style="display:none;">Another Lynch</button>
-                <button type="button" id="endDayBtn" onclick="advanceToNightFromDay()">End Day &rarr; Night</button>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- SPECIAL EVENTS -->
-        <div id="specialEvents">
-            <h3>Special Events</h3>
-            <div id="mayorSection">
-                <p>
-                    Mayor: <strong id="mayorName">None</strong>
-                    <button type="button" id="mayorBtn" onclick="openMayorDialog()">Elect Mayor</button>
-                </p>
-            </div>
-            <div id="anarchistSection">
-                <p>
-                    <button type="button" id="anarchistBtn" onclick="openAnarchistDialog()">Anarchist Kill</button>
-                </p>
-            </div>
-            <div id="terroristSection">
-                <p>
-                    <button type="button" id="terroristBtn" onclick="openTerroristDialog()">Detonate Bomb</button>
-                </p>
-            </div>
-        </div>
-
-        <hr>
-        <p><button type="button" onclick="advanceToNightFromDay()">End Day &rarr; Night</button></p>
-    </div>
-
-    <!-- SCREEN: NIGHT -->
-    <div id="screenNight" style="display:none;">
-        <h2>Night <span id="nightNumber">0</span></h2>
-        <p id="nightInstructions">Roles wake in order. Complete each action to proceed.</p>
-        <div id="nightActionQueue"></div>
-        <div id="nightComplete" style="display:none;">
-            <p>All night actions collected.</p>
-            <button type="button" onclick="resolveNight()">Resolve Night Actions</button>
-        </div>
-    </div>
-
-    <!-- FLOATING BUTTONS -->
-    <button id="gameLogToggle" type="button" onclick="openGameLog()">Log</button>
-    <button id="rosterToggleBtn" type="button" onclick="openRosterDialog()">Roster</button>
-
-    <!-- ROSTER DIALOG -->
-    <div id="rosterDialog" style="display:none;">
-        <h3>Roster</h3>
-        <div id="rosterContent"></div>
-        <br>
-        <button type="button" onclick="closeRosterDialog()">Close</button>
-    </div>
-    <div id="rosterOverlay" style="display:none;" onclick="closeRosterDialog()"></div>
-
     <!-- PLAYER EDIT DIALOG -->
     <div id="playerEditDialog" style="display:none;">
         <h3>Edit Player List</h3>
@@ -164,59 +62,6 @@
         <button type="button" onclick="closePlayerEditDialog()">Cancel</button>
     </div>
     <div id="playerEditOverlay" style="display:none;" onclick="closePlayerEditDialog()"></div>
-
-    <!-- GAME LOG DIALOG -->
-    <div id="gameLogDialog" style="display:none;">
-        <h3>Game Log</h3>
-        <div id="gameLogEntries"></div>
-        <br>
-        <button type="button" onclick="closeGameLog()">Close</button>
-    </div>
-    <div id="gameLogOverlay" style="display:none;" onclick="closeGameLog()"></div>
-
-    <!-- MAYOR ELECTION DIALOG -->
-    <div id="mayorDialog" style="display:none;">
-        <h3>Mayor Election</h3>
-        <p>Select the new Mayor:</p>
-        <select id="mayorSelect"></select>
-        <br><br>
-        <button type="button" onclick="electMayor()">Elect</button>
-        <button type="button" onclick="closeMayorDialog()">Cancel</button>
-    </div>
-    <div id="mayorOverlay" style="display:none;" onclick="closeMayorDialog()"></div>
-
-    <!-- ANARCHIST KILL DIALOG -->
-    <div id="anarchistDialog" style="display:none;">
-        <h3>Anarchist Kill</h3>
-        <p>Select the Anarchist's target:</p>
-        <select id="anarchistTargetSelect"></select>
-        <br><br>
-        <button type="button" onclick="triggerAnarchistKill()">Kill</button>
-        <button type="button" onclick="closeAnarchistDialog()">Cancel</button>
-    </div>
-    <div id="anarchistOverlay" style="display:none;" onclick="closeAnarchistDialog()"></div>
-
-    <!-- TERRORIST DETONATE DIALOG -->
-    <div id="terroristDialog" style="display:none;">
-        <h3>Terrorist Detonation</h3>
-        <p id="terroristBombInfo">Bomb planted on: <strong>Unknown</strong></p>
-        <p>Detonating will kill the target and the two players either side of them in the player list order.</p>
-        <br>
-        <button type="button" onclick="detonateBomb()">Detonate</button>
-        <button type="button" onclick="closeTerroristDialog()">Cancel</button>
-    </div>
-    <div id="terroristOverlay" style="display:none;" onclick="closeTerroristDialog()"></div>
-
-    <!-- HUNTER REVENGE DIALOG -->
-    <div id="hunterDialog" style="display:none;">
-        <h3>Hunter's Revenge</h3>
-        <p id="hunterDialogMessage">The Hunter can take someone with them.</p>
-        <select id="hunterTargetSelect"></select>
-        <br><br>
-        <button type="button" onclick="processHunterRevenge()">Kill</button>
-        <button type="button" onclick="processHunterSkip()">Skip</button>
-    </div>
-    <div id="hunterOverlay" style="display:none;" onclick="processHunterSkip()"></div>
 
     <script src="roles.js"></script>
     <script src="game.js"></script>
