@@ -1,1 +1,3 @@
-I am not a programmer. This is a vibecoded piece of shit and i also refuse to spend any money on it so it will probably be pretty slow going. Feature by feature, i hope to get it working properly at some point.
+A simple JS-based web app that functions as a companion to an IRL gamemaster of a game of Mafia. You're able to input players, assign roles to them, and preside over the nightly and daily happenings, keeping track of who targets who, who gets killed in the night, who gets lynched, who gets saved, and how all the different roles interact together.
+
+This is a work in progress. I am not a programmer. This is a vibecoded piece of shit and i also refuse to spend any money on it so it will probably be pretty slow going in development. Feature by feature, i hope to get it working properly at some point.
