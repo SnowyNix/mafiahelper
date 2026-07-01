@@ -44,7 +44,7 @@ div[id^="screen"]:first-of-type { display: block; }
 }
 #townRolesColumn,
 #mafiaIndepColumn {
-    text-align: center;
+    text-align: left;
 }
 #additionalSettings label {
     display: block;
