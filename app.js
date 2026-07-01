@@ -90,34 +90,36 @@ function buildRoleControl(role) {
     const isMultiCap = role.cap !== 1;
     
     if (isMultiCap) {
-        // Spinner
-        const label = document.createElement("label");
-        const max = role.cap === Infinity ? 99 : role.cap;
-        label.textContent = getSpinnerLabel(role) + ": ";
-        
-        const input = document.createElement("input");
-        input.type = "number";
-        input.min = "0";
-        input.max = String(max);
-        input.value = "0";
-        input.dataset.roleKey = role.key;
-        input.style.width = "50px";
-        input.addEventListener("input", updateCitizenCount);
-        
-        label.appendChild(input);
-        container.appendChild(label);
-    } else {
-        // Checkbox
-        const label = document.createElement("label");
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.dataset.roleKey = role.key;
-        input.addEventListener("change", updateCitizenCount);
-        
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(" " + role.displayName));
-        container.appendChild(label);
-    }
+		// Spinner
+		const label = document.createElement("label");
+		const max = role.cap === Infinity ? 99 : role.cap;
+    
+		const input = document.createElement("input");
+		input.type = "number";
+		input.min = "0";
+		input.max = String(max);
+		input.value = "0";
+		input.dataset.roleKey = role.key;
+		input.style.width = "30px";
+		input.addEventListener("input", updateCitizenCount);
+    
+		// 1. Append the input (spinner) first
+		label.appendChild(input);
+		// 2. Append the text second (adding a space for padding)
+		label.appendChild(document.createTextNode(" " + getSpinnerLabel(role)));
+		container.appendChild(label);
+	} else {
+		// Checkbox
+		const label = document.createElement("label");
+		const input = document.createElement("input");
+		input.type = "checkbox";
+		input.dataset.roleKey = role.key;
+		input.addEventListener("change", updateCitizenCount);
+    
+		label.appendChild(input);
+		label.appendChild(document.createTextNode(" " + role.displayName));
+		container.appendChild(label);
+	}
     
     return container;
 }
@@ -126,7 +128,6 @@ function getSpinnerLabel(role) {
     // Pluralize sensibly
     const name = role.displayName;
     if (name.endsWith("y")) return name.slice(0, -1) + "ies";
-    if (name.endsWith("n")) return name + "s";
     return name + "s";
 }
 
