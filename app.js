@@ -328,6 +328,78 @@ function updateCitizenPreview() {
 }
 
 // ============================================================
+// WHO'S WHO - RANDOMIZATION
+// ============================================================
+function randomizeUnassigned() {
+    // Find all unassigned slots
+    const unassignedSlots = appState.assignmentSlots.filter(
+        slot => !appState.roleAssignments[slot.slotId]
+    );
+    
+    if (unassignedSlots.length === 0) {
+        alert("All roles are already assigned!");
+        return;
+    }
+    
+    // Get available players (not already assigned to other roles)
+    const assigned = new Set(Object.values(appState.roleAssignments));
+    const availablePlayers = appState.players.filter(p => !assigned.has(p));
+    
+    if (availablePlayers.length === 0) {
+        alert("No unassigned players available!");
+        return;
+    }
+    
+    // Shuffle available players
+    const shuffled = [...availablePlayers].sort(() => Math.random() - 0.5);
+    
+    // Assign shuffled players to unassigned slots
+    unassignedSlots.forEach((slot, index) => {
+        if (index < shuffled.length) {
+            appState.roleAssignments[slot.slotId] = shuffled[index];
+        }
+    });
+    
+    renderWhosWhoScreen();
+}
+
+function randomizeAll() {
+    // Shuffle all players
+    const shuffled = [...appState.players].sort(() => Math.random() - 0.5);
+    
+    // Clear all assignments
+    appState.roleAssignments = {};
+    
+    // Assign shuffled players to slots in order
+    appState.assignmentSlots.forEach((slot, index) => {
+        if (index < shuffled.length) {
+            appState.roleAssignments[slot.slotId] = shuffled[index];
+        }
+    });
+    
+    renderWhosWhoScreen();
+}
+
+// ============================================================
+// WHO'S WHO - CONFIRMATION (placeholder for now)
+// ============================================================
+function confirmRoleAssignments() {
+    // Check if all roles are assigned
+    const unassignedSlots = appState.assignmentSlots.filter(
+        slot => !appState.roleAssignments[slot.slotId]
+    );
+    
+    if (unassignedSlots.length > 0) {
+        alert(`Please assign all ${unassignedSlots.length} role(s) before continuing.`);
+        return;
+    }
+    
+    // For now, just log success
+    alert("Role assignments confirmed! (Next feature coming soon)");
+    console.log("Assignments:", appState.roleAssignments);
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener("DOMContentLoaded", function() {
