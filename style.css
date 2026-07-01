@@ -37,13 +37,13 @@ div[id^="screen"]:first-of-type { display: block; }
 
 /* ─── Setup screen ────────────────────────────────── */
 #roleColumns {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     gap: 40px;
-    align-items: flex-start;
+    margin: 0 auto;
 }
 #townRolesColumn,
-#mafiaRolesColumn,
-#indepRolesColumn {
+#mafiaIndepColumn {
     text-align: left;
 }
 #additionalSettings label {
