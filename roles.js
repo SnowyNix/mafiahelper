@@ -25,6 +25,26 @@ const ROLES = {
         description: "Town-aligned. Has no special abilities.",
         cap: Infinity,
     },
+    roleVigilante: {
+        displayName: "Vigilante",
+        alignment: "Town",
+        description: "Town-aligned. Active during the night. May kill at their own discretion, but cannot deal with the guilt of killing an ally.",
+        cap: 2,
+        nightAction: {
+            type: 'kill',
+            targetPool: 'livingOther',
+            minTargets: 1,
+            maxTargets: 1,
+            skippable: true,
+        }
+    },
+     roleFreemason: {
+        displayName: "Freemason",
+        alignment: "Town",
+        description: "Town-aligned. All Freemasons wake up together on the first night to be aware of each other.",
+        cap: 10,
+        firstNight: { type: 'teamReveal', teamWake: true },
+    },
     roleDetective: {
         displayName: "Detective",
         alignment: "Town",
@@ -64,19 +84,6 @@ const ROLES = {
             skippable: true,
         }
     },
-    roleVigilante: {
-        displayName: "Vigilante",
-        alignment: "Town",
-        description: "Town-aligned. Active during the night. May kill at their own discretion, but cannot deal with the guilt of killing an ally.",
-        cap: 2,
-        nightAction: {
-            type: 'kill',
-            targetPool: 'livingOther',
-            minTargets: 1,
-            maxTargets: 1,
-            skippable: true,
-        }
-    },
     roleWatcher: {
         displayName: "Watcher",
         alignment: "Town",
@@ -109,13 +116,6 @@ const ROLES = {
             maxTargets: 1,
             skippable: true,
         }
-    },
-    roleFreemason: {
-        displayName: "Freemason",
-        alignment: "Town",
-        description: "Town-aligned. All Freemasons wake up together on the first night to be aware of each other.",
-        cap: 10,
-        firstNight: { type: 'teamReveal', teamWake: true },
     },
     roleBus: {
         displayName: "Bus Driver",
