@@ -1,0 +1,213 @@
+/* ─── Base ─────────────────────────────────────────── */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 16px;
+    background: #f5f5f5;
+    min-height: 100vh;
+}
+h1, h2, h3, h4 {
+    text-align: center;
+    margin: 0.5em 0;
+}
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.25rem; }
+hr { border: none; border-top: 1px solid #ccc; margin: 16px 0; }
+button {
+    cursor: pointer;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background: #fff;
+}
+button:hover { background: #e8e8e8; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+select { padding: 3px 6px; font-size: 0.9rem; }
+
+/* ─── Screens ─────────────────────────────────────── */
+div[id^="screen"] {
+    display: none;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+div[id^="screen"]:first-of-type { display: block; }
+
+/* ─── Setup screen ────────────────────────────────── */
+#roleColumns {
+    display: inline-flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+#townRolesColumn,
+#mafiaRolesColumn,
+#indepRolesColumn {
+    text-align: left;
+}
+#additionalSettings label {
+    display: block;
+    margin: 4px 0;
+}
+
+/* ─── Who's Who screen ────────────────────────────── */
+#roleAssignmentList {
+    text-align: left;
+    display: inline-block;
+}
+#roleAssignmentList > div {
+    margin-bottom: 6px;
+}
+
+/* ─── First Night screen ──────────────────────────── */
+#firstNightContent {
+    text-align: left;
+    display: inline-block;
+    margin: 12px 0;
+}
+.firstNightGroup {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 8px 0;
+    background: #fff;
+}
+.firstNightGroup h4 { margin-top: 0; }
+.firstNightGroup ul { margin: 4px 0; padding-left: 20px; }
+
+/* ─── Day screen ──────────────────────────────────── */
+#lynchSection, #specialEvents {
+    text-align: left;
+    display: inline-block;
+    min-width: 400px;
+    width: 100%;
+    max-width: 600px;
+}
+.accusationRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+    flex-wrap: wrap;
+}
+.accusationRow label { white-space: nowrap; }
+.voteRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+.voteRow input[type="number"] {
+    width: 50px;
+}
+#specialEvents > div {
+    margin: 8px 0;
+}
+
+/* ─── Night screen ────────────────────────────────── */
+#nightActionQueue {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.nightCard {
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    margin: 6px 0;
+    background: #fff;
+    overflow: hidden;
+}
+.nightCard-header {
+    padding: 10px 14px;
+    font-weight: bold;
+    background: #eaeaea;
+    cursor: default;
+}
+.nightCard-body {
+    padding: 12px 14px;
+    border-top: 1px solid #bbb;
+}
+.nightCard.collapsed .nightCard-body { display: none; }
+.nightCard.completed .nightCard-header {
+    background: #d4edda;
+    color: #155724;
+}
+.nightCard.completed .nightCard-header::after {
+    content: " \2713";
+}
+.nightCard.active .nightCard-header {
+    background: #cce5ff;
+    color: #004085;
+}
+.nightCard-target-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+}
+.nightCard-instruction {
+    font-style: italic;
+    margin: 6px 0;
+    color: #555;
+}
+
+/* ─── Dialogs / Overlays ──────────────────────────── */
+#rosterDialog,
+#playerEditDialog,
+#gameLogDialog,
+#mayorDialog,
+#anarchistDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 2px solid #000;
+    padding: 16px;
+    z-index: 100;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+    min-width: 300px;
+}
+#rosterOverlay,
+#playerEditOverlay,
+#gameLogOverlay,
+#mayorOverlay,
+#anarchistOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 99;
+}
+
+/* ─── Game Log ────────────────────────────────────── */
+#gameLogEntries {
+    max-height: 50vh;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+#gameLogEntries .logEntry {
+    padding: 3px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* ─── Floating buttons ────────────────────────────── */
+#gameLogToggle {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    z-index: 50;
+    display: block;
+}
+#rosterToggleBtn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 50;
+    display: none;
+}
