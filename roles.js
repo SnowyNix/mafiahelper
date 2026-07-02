@@ -1,20 +1,19 @@
-// Wakeup order for standard nights (Night 2+).
-// Alchemist and Poltergeist are first IF it's their first night since death.
-// All others wake in this fixed order.
+// Fixed wakeup order for nights (Night 2+).
+// Special first-night behavior and conditionals are defined on the role objects themselves.
 const WAKEUP_ORDER = [
-    { roleKey: 'roleAlchemist',   label: 'Alchemist',     conditional: 'firstNightAfterDeath', individuals: false },
-    { roleKey: 'rolePoltergeist', label: 'Poltergeist',   conditional: 'firstNightAfterDeath', individuals: false },
-    { roleKey: 'roleBarman',      label: 'Barman',        conditional: null,                   individuals: false },
-    { roleKey: 'roleBus',         label: 'Bus Driver',    conditional: null,                   individuals: false },
-    { roleKey: 'roleDefender',    label: 'Defender',      conditional: null,                   individuals: false },
-    { roleKey: 'roleMirror',      label: 'Mirror',        conditional: null,                   individuals: false },
-    { roleKey: 'roleDetective',   label: 'Detective',     conditional: null,                   individuals: false },
-    { roleKey: 'roleVigilante',   label: 'Vigilantes',    conditional: null,                   individuals: true  },
-    { roleKey: 'roleMafia',       label: 'Mafia Members', conditional: null,                   individuals: 'adjustable' },
-    { roleKey: 'roleBoss',        label: 'Mafia Boss',    conditional: null,                   individuals: false },
-    { roleKey: 'roleDoctor',      label: 'Doctor',        conditional: null,                   individuals: false },
-    { roleKey: 'roleSerial',      label: 'Serial Killer', conditional: 'everyOtherNight',      individuals: false },
-    { roleKey: 'roleJokester',    label: 'Jokester',      conditional: null,                   individuals: false },
+    'roleAlchemist',
+    'rolePoltergeist',
+    'roleBarman',
+    'roleBus',
+    'roleDefender',
+    'roleMirror',
+    'roleDetective',
+    'roleVigilante',
+    'roleMafia',
+    'roleBoss',
+    'roleDoctor',
+    'roleSerial',
+    'roleJokester',
 ];
 
 const ROLES = {
