@@ -170,7 +170,6 @@ function updateCitizenCount() {
 // ============================================================
 function readSettingsFromUI() {
     return {
-        randomAssign: document.getElementById("settingRandomAssign").checked,
         mafiaWakeAsGroup: document.getElementById("settingMafiaGroupWake").checked,
         serialKillerFrequency: parseInt(document.getElementById("settingSkFrequency").value, 10) || 2,
     };
