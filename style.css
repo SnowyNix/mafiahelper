@@ -77,14 +77,21 @@ div[id^="screen"]:first-of-type { display: block; }
 .firstNightGroup ul { margin: 4px 0; padding-left: 20px; }
 
 /* ─── Day screen ──────────────────────────────────── */
-#lynchSection, #specialEvents {
-    text-align: left;
+#accusations,
+#specialEvents,
+#lynchActionContainer {
+    /* Center the lynch/accusation controls and special events to match the rest of the centered screen */
+    text-align: center;
+    margin: 0 auto;
     display: inline-block;
-    min-width: 400px;
+    min-width: 300px;
     width: 100%;
     max-width: 600px;
 }
+
+/* Keep individual accusation rows left-aligned for readability inside the centered block */
 .accusationRow {
+    text-align: left;
     display: flex;
     align-items: center;
     gap: 8px;
