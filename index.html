@@ -36,6 +36,12 @@
         </div>
 
         <br>
+        <p>
+            Language:
+            <select id="langSelect" onchange="switchLanguage(this.value)">
+                <option value="en">English</option>
+            </select>
+        </p>
         <button type="button" onclick="continueToWhosWho()">Continue</button>
     </div>
 
@@ -52,6 +58,19 @@
         <button type="button" onclick="confirmRoleAssignments()">Continue</button>
     </div>
 
+    <!-- SCREEN: FIRST NIGHT -->
+    <div id="screenFirstNight" style="display:none;">
+        <h2>First Night</h2>
+        <p>Handle any first-night actions. Use the Roster button (bottom right) to review all players and roles.</p>
+
+        <h3>First Night Actions</h3>
+        <div id="firstNightActions"></div>
+
+        <br>
+        <button id="firstNightBackBtn" type="button" onclick="goBackToWhosWho()">Back</button>
+        <button id="firstNightDayBtn" type="button" onclick="proceedToDay()">Begin Day 1</button>
+    </div>
+
     <!-- PLAYER EDIT DIALOG -->
     <div id="playerEditDialog" style="display:none;">
         <h3>Edit Player List</h3>
@@ -62,6 +81,16 @@
         <button type="button" onclick="closePlayerEditDialog()">Cancel</button>
     </div>
     <div id="playerEditOverlay" style="display:none;" onclick="closePlayerEditDialog()"></div>
+
+    <!-- ROSTER DIALOG (available from First Night onward) -->
+    <button id="rosterToggleBtn" onclick="toggleRoster()">Roster</button>
+    <div id="rosterDialog" style="display:none;">
+        <h3 id="rosterTitle"></h3>
+        <div id="rosterContent"></div>
+        <br>
+        <button id="rosterCloseBtn" type="button" onclick="hideRoster()">Close</button>
+    </div>
+    <div id="rosterOverlay" style="display:none;" onclick="hideRoster()"></div>
 
     <script src="roles.js"></script>
     <script src="game.js"></script>
